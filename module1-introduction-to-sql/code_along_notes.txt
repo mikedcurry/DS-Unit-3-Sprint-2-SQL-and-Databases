@@ -1,0 +1,34 @@
+
+(base) C:\Users\Michael>cd Documents
+
+(base) C:\Users\Michael\Documents>cd git
+
+(base) C:\Users\Michael\Documents\git>cd unit3
+
+(base) C:\Users\Michael\Documents\git\unit3>git clone https://github.com/mikedcurry/DS-Unit-3-Sprint-2-SQL-and-Databases
+Cloning into 'DS-Unit-3-Sprint-2-SQL-and-Databases'...
+remote: Enumerating objects: 84, done.
+remote: Total 84 (delta 0), reused 0 (delta 0), pack-reused 84
+Unpacking objects: 100% (84/84), done.
+
+(base) C:\Users\Michael\Documents\git\unit3>python
+Python 3.7.1 (default, Dec 10 2018, 22:54:23) [MSC v.1915 64 bit (AMD64)] :: Anaconda, Inc. on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import sqlite3
+>>> conn = sqlite3.connect('toy_data.db')
+>>> curs = conn.cursor()
+>>> dir(curs)
+['__class__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__lt__', '__ne__', '__new__', '__next__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'arraysize', 'close', 'connection', 'description', 'execute', 'executemany', 'executescript', 'fetchall', 'fetchmany', 'fetchone', 'lastrowid', 'row_factory', 'rowcount', 'setinputsizes', 'setoutputsize']
+>>> query = 'CREATE TABLE toy (name varchar(30), size int);'
+>>> query
+'CREATE TABLE toy (name varchar(30), size int);'
+>>> curs.execute(query)
+<sqlite3.Cursor object at 0x000002411CAB0730>
+>>> curs.close()
+>>> conn.commit()
+>>> curs.commit()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'sqlite3.Cursor' object has no attribute 'commit'
+>>> curs2 = conn.cursor()
+>>> curs2.execute('SELECT * FROM toy;').fetchall()
