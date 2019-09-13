@@ -1,6 +1,12 @@
 ##########
 # PART 2 #
 ##########
+import pandas as pd
+import sqlite3
+
+
+# Create Cursor
+c = conn.cursor()
 
 # Inspect Table Names:
 c.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;").fetchall()
