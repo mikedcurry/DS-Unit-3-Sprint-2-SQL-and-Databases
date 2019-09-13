@@ -24,13 +24,16 @@ c.execute('SELECT BirthDate FROM Employee LIMIT 2;').fetchall()
 # What is the average age of an employee at the time of their hiring? 
 #   (Hint: a lot of arithmetic works with dates.)
 
-c.execute("""SELECT AVG(2019-09-13 - BirthDate)
-             FROM Employee
-          """).fetchone()[0]
-
+# c.execute("""SELECT AVG(2019-09-13 - BirthDate)
+#              FROM Employee
+#           """).fetchone()[0]
 # Someone ought to call in about all this child labor...
 
-# Maybe come back and figure out why date subtraction looks whack...
+# What is the average age of an employee at the time of their hiring? 
+c.execute("""SELECT AVG((julianday('now') - julianday(BirthDate))/365)
+             FROM Employee;
+          """).fetchone()[0]        
+
 
 ##########
 # PART 3 #
